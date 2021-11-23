@@ -1,0 +1,179 @@
+<!Doctype html>
+
+<html lang="en">
+
+  <head>
+   
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="./index.css" rel="stylesheet"></link>
+  
+    <title>Hello, world!</title>
+
+  </head>
+
+
+  <body>
+   
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Hiren Library</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+             
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <div class="container my-3">
+        <form id="li-form">
+            <div class="row mb-3">
+              <label for="bookname" class="col-sm-2 col-form-label">name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="bookname" placeholder="Enter The Book Name">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="author" class="col-sm-2 col-form-label">author</label>
+              <div class="col-sm-10">
+                <input type="type" class="form-control" id="author" placeholder="Enter the Author Name">
+              </div>
+            </div>
+            <fieldset class="row mb-3">
+              <legend class="col-form-label col-sm-2 pt-0" id="type">type</legend>
+              <div class="col-sm-10">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="hiren" id="fiction" value="fiction" checked>
+                  <label class="form-check-label" for="fiction">
+                fiction
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="hiren" id="cp" value="cp">
+                  <label class="form-check-label" for="cp">
+                cp
+                  </label>
+                </div>
+                <div class="form-check disabled">
+                  <input class="form-check-input" type="radio" name="hiren" id="cooking" value="cooking" >
+                  <label class="form-check-label" for="cooking">
+                 cooking
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+            <div class="row mb-3">
+              <div class="col-sm-10 offset-sm-2">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="gridCheck1">
+                  <label class="form-check-label" for="gridCheck1">
+                    Example checkbox
+                  </label>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">add book</button>
+          </form>
+          <div id="table">
+              <h1 class="my-3">Your Books</h1>
+            <table class="table table-scripted ">
+                <thead>
+                  <tr>
+                  
+                    <th scope="col">Name</th>
+                    <th scope="col">author</th>
+                    <th scope="col">Type</th>
+                  </tr>
+                </thead>
+                <tbody id="table-body">
+                
+               
+                </tbody>
+              </table>
+          </div>
+      </div>
+
+   
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <script >function Book(name,author,type){
+        this.name=name;
+        this.type=type;
+        this.author=author;
+    }
+    
+    function Display()
+      {
+          
+      }
+    
+    
+    
+    
+    
+    
+      
+    
+    Display.prototype.add=function(book){
+      const tablebody=document.querySelector("#table-body");
+    const str=`   <tr>
+    
+    <th scope="col">${book.name}</th>
+    <th scope="col">${book.author}</th>
+    <th scope="col">${book.type}</th>
+    </tr>`
+    tablebody.innerHTML+=str;
+    };
+    Display.prototype.clear=function(){
+       let liform=document.querySelector("#li-form");
+       liform.reset();
+    }
+    
+    let liform=document.querySelector("#li-form");
+    liform.addEventListener("submit",function(e){
+    
+       let name=document.querySelector("#bookname").value;
+    
+       let author=document.querySelector("#author").value;
+       let fiction=document.querySelector("#fiction");
+       let cp=document.querySelector("#cp");
+       let cooking=document.querySelector("#cooking");
+       if(fiction.checked){
+           type=fiction.value;
+       }
+       else if(cp.checked){
+           type=cp.value;
+       }
+       else{
+           type=cooking.value;
+       }
+    
+    
+       const book=new Book(name,author,type)
+       console.log(book);
+       const display=new Display();
+       display.add(book);
+       display.clear();
+       e.preventDefault();
+    
+    
+    
+    
+    })
+    </script>
+  </body>
+  
+</html>
