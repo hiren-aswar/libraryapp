@@ -115,6 +115,7 @@
         this.author=author;
     }
     
+    
     function Display()
       {
           
@@ -146,6 +147,7 @@
     liform.addEventListener("submit",function(e){
     
        let name=document.querySelector("#bookname").value;
+       display.clear();
     
        let author=document.querySelector("#author").value;
        let fiction=document.querySelector("#fiction");
@@ -165,9 +167,15 @@
        const book=new Book(name,author,type)
        console.log(book);
        const display=new Display();
+  
        display.add(book);
-       display.clear();
+
        e.preventDefault();
+
+
+      
+      
+
     
     
     
